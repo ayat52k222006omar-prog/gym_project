@@ -49,3 +49,6 @@ build/
 .pub/
 .flutter-plugins
 .flutter-plugins-dependencies
+build-tools/
+platforms/
+sources/
