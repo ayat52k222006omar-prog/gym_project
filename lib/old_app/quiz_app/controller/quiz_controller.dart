@@ -1,4 +1,4 @@
-import 'package:myfirstapp/quiz_app/model/question_model.dart';
+import 'package:myfirstapp/old_app/quiz_app/model/question_model.dart';
 
 
 

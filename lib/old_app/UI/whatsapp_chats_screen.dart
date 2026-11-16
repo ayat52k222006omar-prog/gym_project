@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myfirstapp/API/chat_model.dart';
-import 'package:myfirstapp/UI/whatsapptextstyle.dart';
-import 'package:myfirstapp/API/api_list.dart';
+import 'package:myfirstapp/old_app/API/chat_model.dart';
+import 'package:myfirstapp/old_app/UI/whatsapptextstyle.dart';
+import 'package:myfirstapp/old_app/API/api_list.dart';
 
 class WhatsappChatsScreen extends StatelessWidget {
   const WhatsappChatsScreen({super.key});

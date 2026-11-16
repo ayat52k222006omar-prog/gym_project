@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/quiz_controller.dart';
-import 'package:myfirstapp/quiz_app/view/result_page.dart';
+import 'package:myfirstapp/old_app/quiz_app/view/result_page.dart';
 
 // نربط الواجهة بالمنطق
 class QuestionsPage extends StatefulWidget {
