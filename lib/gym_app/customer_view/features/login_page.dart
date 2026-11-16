@@ -4,13 +4,7 @@ import 'package:get/get.dart';
 import 'package:myfirstapp/gym_app/core/const/appgradients.dart';
 import 'package:myfirstapp/gym_app/customer_view/features/home_page.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: LoginPage(),
-  ));
-}
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

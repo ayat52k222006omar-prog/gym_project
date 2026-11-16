@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myfirstapp/gym_app/admin_view/core/user_controller.dart';
+import 'package:myfirstapp/gym_app/admin_view/features/gym&bar_page.dart';
 import 'package:myfirstapp/gym_app/admin_view/features/overview_page.dart';
 import 'package:myfirstapp/gym_app/core/const/appgradients.dart';
 
@@ -25,11 +26,15 @@ class AddUserPage extends StatelessWidget {
                 children: [
                   // الهيدر العلوي (مع ربط زر القائمة بـ toggleDrawer)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: () => controller.toggleDrawer(), // 👈 فتح القائمة الجانبية
+                          onTap: () => controller
+                              .toggleDrawer(), // 👈 فتح القائمة الجانبية
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
@@ -43,7 +48,11 @@ class AddUserPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: const Icon(Icons.menu, color: Color(0xFF1D2733), size: 22),
+                            child: const Icon(
+                              Icons.menu,
+                              color: Color(0xFF1D2733),
+                              size: 22,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -66,17 +75,26 @@ class AddUserPage extends StatelessWidget {
                       children: [
                         _buildFieldLabel("Phone"),
                         const SizedBox(height: 6),
-                        _buildTextField(controller: controller.addPhoneController, hint: "01x xxxx xxxx"),
+                        _buildTextField(
+                          controller: controller.addPhoneController,
+                          hint: "01x xxxx xxxx",
+                        ),
                         const SizedBox(height: 16),
 
                         _buildFieldLabel("Email (login)"),
                         const SizedBox(height: 6),
-                        _buildTextField(controller: controller.addEmailController, hint: "name@email.com"),
+                        _buildTextField(
+                          controller: controller.addEmailController,
+                          hint: "name@email.com",
+                        ),
                         const SizedBox(height: 16),
 
                         _buildFieldLabel("Temporary password"),
                         const SizedBox(height: 6),
-                        _buildTextField(controller: controller.addPasswordController, hint: "PLATE-4821"),
+                        _buildTextField(
+                          controller: controller.addPasswordController,
+                          hint: "PLATE-4821",
+                        ),
                         const SizedBox(height: 16),
 
                         // كارت الـ Contract
@@ -108,11 +126,17 @@ class AddUserPage extends StatelessWidget {
                               const SizedBox(height: 12),
                               _buildFieldLabel("Start date"),
                               const SizedBox(height: 6),
-                              _buildTextField(controller: controller.addStartDateController, hint: "16 Oct 2026"),
+                              _buildTextField(
+                                controller: controller.addStartDateController,
+                                hint: "16 Oct 2026",
+                              ),
                               const SizedBox(height: 12),
                               _buildFieldLabel("End date"),
                               const SizedBox(height: 6),
-                              _buildTextField(controller: controller.addEndDateController, hint: "16 Oct 2027"),
+                              _buildTextField(
+                                controller: controller.addEndDateController,
+                                hint: "16 Oct 2027",
+                              ),
                               const SizedBox(height: 10),
                               const Text(
                                 "Ending before this date later needs your approval and the person's approval.",
@@ -213,9 +237,7 @@ class AddUserPage extends StatelessWidget {
                 // خلفية معتمة عند الفتح
                 GestureDetector(
                   onTap: () => controller.toggleDrawer(),
-                  child: Container(
-                    color: Colors.black.withOpacity(0.35),
-                  ),
+                  child: Container(color: Colors.black.withOpacity(0.35)),
                 ),
                 // محتوى القائمة
                 Align(
@@ -231,10 +253,20 @@ class AddUserPage extends StatelessWidget {
                         // الشعار
                         RichText(
                           text: const TextSpan(
-                            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, fontFamily: 'Inter'),
+                            style: TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Inter',
+                            ),
                             children: [
-                              TextSpan(text: "PLATE ", style: TextStyle(color: Color(0xFF1D2733))),
-                              TextSpan(text: "Admin", style: TextStyle(color: Color(0xFFF4877B))),
+                              TextSpan(
+                                text: "PLATE ",
+                                style: TextStyle(color: Color(0xFF1D2733)),
+                              ),
+                              TextSpan(
+                                text: "Admin",
+                                style: TextStyle(color: Color(0xFFF4877B)),
+                              ),
                             ],
                           ),
                         ),
@@ -259,15 +291,30 @@ class AddUserPage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: const Text(
                                   "DK",
-                                  style: TextStyle(color: Color(0xFFF4877B), fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                    color: Color(0xFFF4877B),
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 10),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
-                                  Text("Dr. Khaled", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                                  Text("Zamalek Club · Admin", style: TextStyle(fontSize: 11, color: Color(0xFF6B7886))),
+                                  Text(
+                                    "Dr. Khaled",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Zamalek Club · Admin",
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: Color(0xFF6B7886),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
@@ -276,27 +323,51 @@ class AddUserPage extends StatelessWidget {
                         const SizedBox(height: 20),
                         // عناصر القائمة
                         _buildDrawerItem(
-                          icon: Icons.dashboard_outlined, 
-                          title: "Overview", 
-                          isSelected: false, 
+                          icon: Icons.dashboard_outlined,
+                          title: "Overview",
+                          isSelected: false,
                           onTap: () {
                             controller.toggleDrawer();
-                             Get.to(() => AdminOverviewPage());
-                          }
+                            Get.to(() => AdminOverviewPage());
+                          },
                         ),
                         _buildDrawerItem(
-                          icon: Icons.group_outlined, 
-                          title: "User Management", 
+                          icon: Icons.group_outlined,
+                          title: "User Management",
                           isSelected: true, // مخصص كعنصر نشط
                           onTap: () {
                             controller.toggleDrawer();
                             Get.back(); // العودة لصفحة المستخدمين
-                          }
+                          },
                         ),
-                        _buildDrawerItem(icon: Icons.person_outline, title: "Gym Occupancy", isSelected: false, onTap: () {}),
-                        _buildDrawerItem(icon: Icons.local_bar_outlined, title: "Gym & Bar", isSelected: false, onTap: () {}),
-                        _buildDrawerItem(icon: Icons.local_offer_outlined, title: "Price History", isSelected: false, onTap: () {}),
-                        _buildDrawerItem(icon: Icons.credit_card_outlined, title: "Subscriptions & Policies", isSelected: false, onTap: () {}),
+                        _buildDrawerItem(
+                          icon: Icons.person_outline,
+                          title: "Gym Occupancy",
+                          isSelected: false,
+                          onTap: () {},
+                        ),
+                        _buildDrawerItem(
+                          icon: Icons.local_bar_outlined,
+                          title: "Gym & Bar",
+                          isSelected: false,
+                          onTap: () {
+                            controller
+                                .toggleDrawer(); // لإغلاق القائمة الجانبية أولاً
+                            Get.to(() => GymBarPage());
+                          },
+                        ),
+                        _buildDrawerItem(
+                          icon: Icons.local_offer_outlined,
+                          title: "Price History",
+                          isSelected: false,
+                          onTap: () {},
+                        ),
+                        _buildDrawerItem(
+                          icon: Icons.credit_card_outlined,
+                          title: "Subscriptions & Policies",
+                          isSelected: false,
+                          onTap: () {},
+                        ),
                       ],
                     ),
                   ),
@@ -320,7 +391,10 @@ class AddUserPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField({required TextEditingController controller, required String hint}) {
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String hint,
+  }) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -328,7 +402,10 @@ class AddUserPage extends StatelessWidget {
         hintStyle: const TextStyle(color: Color(0xFF8C98A4), fontSize: 14),
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: Color(0xFFCFDCD9)),
@@ -345,7 +422,12 @@ class AddUserPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDrawerItem({required IconData icon, required String title, required bool isSelected, required VoidCallback onTap}) {
+  Widget _buildDrawerItem({
+    required IconData icon,
+    required String title,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
@@ -360,8 +442,8 @@ class AddUserPage extends StatelessWidget {
         child: Row(
           children: [
             Icon(
-              icon, 
-              color: isSelected ? Colors.white : const Color(0xFF1D2733), 
+              icon,
+              color: isSelected ? Colors.white : const Color(0xFF1D2733),
               size: 22,
             ),
             const SizedBox(width: 12),

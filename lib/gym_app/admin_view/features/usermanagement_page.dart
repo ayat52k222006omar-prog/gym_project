@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myfirstapp/gym_app/admin_view/features/add_user_page.dart';
+import 'package:myfirstapp/gym_app/admin_view/features/gym&bar_page.dart';
 import 'package:myfirstapp/gym_app/admin_view/features/overview_page.dart';
 import 'package:myfirstapp/gym_app/admin_view/core/user_controller.dart';
 import 'package:myfirstapp/gym_app/admin_view/core/model/user_model.dart';
+import 'package:myfirstapp/gym_app/admin_view/features/terminate_contract_page.dart';
 import 'package:myfirstapp/gym_app/core/const/appgradients.dart';
 
 class UsersManagementPage extends StatelessWidget {
@@ -319,9 +321,9 @@ class UsersManagementPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 10),
-                              Column(
+                              const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
+                                children: [
                                   Text(
                                     "Dr. Khaled",
                                     style: TextStyle(
@@ -369,7 +371,11 @@ class UsersManagementPage extends StatelessWidget {
                           icon: Icons.local_bar_outlined,
                           title: "Gym & Bar",
                           isSelected: false,
-                          onTap: () {},
+                          onTap: () {
+                            controller
+                                .toggleDrawer(); // لإغلاق القائمة الجانبية أولاً
+                            Get.to(() => GymBarPage());
+                          },
                         ),
                         _buildDrawerItem(
                           icon: Icons.local_offer_outlined,
@@ -393,6 +399,14 @@ class UsersManagementPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  /// النص الفرعي المخصص: لو كوتش بيعرض معاه كام كلاينت وباقي كام مكان فاضي
+  String _getUserSubtitle(UserModel user) {
+    if (user.role == UserRole.coach) {
+      return '${user.specialization ?? "Coach"} · ${user.currentClientsCount} clients · ${user.remainingCapacity} spots left';
+    }
+    return user.summarySubtitle;
   }
 
   /// كارت المستخدم الواحد
@@ -444,7 +458,7 @@ class UsersManagementPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    user.summarySubtitle,
+                    _getUserSubtitle(user),
                     style: const TextStyle(
                       fontSize: 12,
                       color: Color(0xFF6B7886),
@@ -505,7 +519,7 @@ class UsersManagementPage extends StatelessWidget {
     );
   }
 
-  /// Bottom Sheet للتعديل
+  /// Bottom Sheet للتعديل (بدون زرار Change coach للعميل)
   void _showUserActionBottomSheet(BuildContext context, UserModel user) {
     final bool isStaff =
         user.role == UserRole.coach || user.role == UserRole.barWorker;
@@ -562,7 +576,7 @@ class UsersManagementPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          "${_getRoleDisplayName(user.role)} · ${user.summarySubtitle}",
+                          "${_getRoleDisplayName(user.role)} · ${_getUserSubtitle(user)}",
                           style: const TextStyle(
                             fontSize: 12.5,
                             color: Color(0xFF6B7886),
@@ -650,7 +664,12 @@ class UsersManagementPage extends StatelessWidget {
               if (isStaff) ...[
                 const SizedBox(height: 10),
                 OutlinedButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    Navigator.pop(context); // 👈 إغلاق الـ Bottom Sheet أولاً
+                    Get.to(
+                      () => TerminateContractPage(user: user),
+                    ); // 👈 الانتقال لصفحة الترمينيت مع تمرير بيانات المستخدم
+                  },
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 48),
                     side: const BorderSide(color: Color(0xFFD9483B)),
@@ -689,26 +708,6 @@ class UsersManagementPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4B5563),
-                    minimumSize: const Size(double.infinity, 48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    "Change coach",
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
               ],
               const SizedBox(height: 10),
               OutlinedButton(
@@ -736,7 +735,7 @@ class UsersManagementPage extends StatelessWidget {
     );
   }
 
-  /// 🎯 دالة عنصر القائمة الجانبية (هي دي اللي كانت ناقصة ومسببة الإيرور)
+  /// دالة عنصر القائمة الجانبية
   Widget _buildDrawerItem({
     required IconData icon,
     required String title,

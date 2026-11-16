@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myfirstapp/gym_app/admin_view/features/Edit_Prices&History_page.dart';
+import 'package:myfirstapp/gym_app/admin_view/features/gym&bar_page.dart';
 import 'package:myfirstapp/gym_app/admin_view/features/usermanagement_page.dart';
 import 'package:myfirstapp/gym_app/core/const/appgradients.dart';
 // استوردي باقي الصفحات هنا لو حابة تربطي القائمة الجانبية بها
@@ -400,15 +402,40 @@ class AdminOverviewPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         // عناصر التنقل في القائمة
-                        _buildDrawerItem(icon: Icons.dashboard_outlined, title: "Overview", isSelected: true, onTap: () => controller.toggleDrawer()),
-                        _buildDrawerItem(icon: Icons.group_outlined, title: "User Management", isSelected: false, 
+                        _buildDrawerItem(
+                          icon: Icons.dashboard_outlined,
+                           title: "Overview",
+                            isSelected: true,
+                             onTap: () =>
+                              controller.toggleDrawer()),
+                        _buildDrawerItem(
+                          icon: Icons.group_outlined,
+                           title: "User Management", 
+                           isSelected: false, 
                             onTap: () {
                               controller.toggleDrawer(); // لإغلاق القائمة الجانبية أولاً
                                Get.to(() => UsersManagementPage()); // الانتقال لصفحة إدارة المستخدمين
                              },),
-                        _buildDrawerItem(icon: Icons.person_outline, title: "Gym Occupancy", isSelected: false, onTap: () {}),
-                        _buildDrawerItem(icon: Icons.local_bar_outlined, title: "Gym & Bar", isSelected: false, onTap: () {}),
-                        _buildDrawerItem(icon: Icons.local_offer_outlined, title: "Price History", isSelected: false, onTap: () {}),
+                        _buildDrawerItem(icon: Icons.person_outline, title: "Gym Occupancy", isSelected: false, onTap: () {
+                              controller.toggleDrawer(); // لإغلاق القائمة الجانبية أولاً
+                              // الانتقال لصفحة إدارة المستخدمين
+                             },),
+                        _buildDrawerItem(
+                          icon: Icons.local_bar_outlined,
+                           title: "Gym & Bar", 
+                           isSelected: false,
+                         onTap: () {
+                          controller.toggleDrawer(); // لإغلاق القائمة الجانبية أولاً
+                            Get.to(() =>GymBarPage ());
+                         },),
+                        _buildDrawerItem(
+                          icon: Icons.local_offer_outlined,
+                           title: "Price History", 
+                           isSelected: false, 
+                          onTap: () {
+                           controller.toggleDrawer();
+                            Get.to(() => EditPricesPage());
+                          }),
                         _buildDrawerItem(icon: Icons.credit_card_outlined, title: "Subscriptions & Policies", isSelected: false, onTap: () {}),
                       ],
                     ),
